@@ -1,11 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type FieldType = "input" | "checkbox";
-
 export interface Field {
   id: string;
-  type: FieldType;
   label: string;
+  placeholder: string;
+  value: string;
   required: boolean;
 }
 
@@ -35,8 +34,23 @@ const fieldSlice = createSlice({
         field.required = !field.required;
       }
     },
+    updateValue(state, action: PayloadAction<{ id: string; value: string }>) {
+      const field = state.fields.find((f) => f.id === action.payload.id);
+      if (field) {
+        field.value = action.payload.value;
+      }
+    },
+    clearFields(state) {
+      state.fields = [];
+    },
   },
 });
 
-export const { addField, deleteField, toggleRequired } = fieldSlice.actions;
+export const {
+  addField,
+  deleteField,
+  toggleRequired,
+  updateValue,
+  clearFields,
+} = fieldSlice.actions;
 export const fieldReducer = fieldSlice.reducer;

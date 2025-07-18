@@ -1,0 +1,19 @@
+.container {
+  width: 50%;
+  padding: 10px;
+  background: rgb(72, 178, 89);
+}
+
+.formWrapper {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.submitButton {
+  background-color: rgb(72, 178, 89);
+}
