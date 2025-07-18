@@ -2,8 +2,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface Field {
   id: string;
-  label: string;
-  placeholder: string;
   value: string;
   required: boolean;
 }

@@ -14,9 +14,7 @@ export const FormEditor = () => {
       addField({
         id: uuid(),
         value: "",
-        label: "",
         required: false,
-        placeholder: "",
       })
     );
   };
