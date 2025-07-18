@@ -40,17 +40,9 @@ const fieldSlice = createSlice({
         field.value = action.payload.value;
       }
     },
-    clearFields(state) {
-      state.fields = [];
-    },
   },
 });
 
-export const {
-  addField,
-  deleteField,
-  toggleRequired,
-  updateValue,
-  clearFields,
-} = fieldSlice.actions;
+export const { addField, deleteField, toggleRequired, updateValue } =
+  fieldSlice.actions;
 export const fieldReducer = fieldSlice.reducer;

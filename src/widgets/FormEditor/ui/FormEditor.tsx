@@ -1,12 +1,9 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
-import {
-  addField,
-  deleteField,
-  toggleRequired,
-  updateValue,
-} from "@/entities/field/model/fieldSlice";
-import { Button, Card, Checkbox, Form, Input, Space } from "antd";
+import { addField } from "@/entities/field/model/fieldSlice";
+import { Button, Form, Space } from "antd";
 import styles from "./FormEditor.module.css";
+import { FieldCard } from "./FieldCard";
+import { v4 as uuid } from "uuid";
 
 export const FormEditor = () => {
   const dispatch = useAppDispatch();
@@ -15,7 +12,7 @@ export const FormEditor = () => {
   const handleAdd = () => {
     dispatch(
       addField({
-        id: Date.now().toString(),
+        id: uuid(),
         value: "",
         label: "",
         required: false,
@@ -23,44 +20,6 @@ export const FormEditor = () => {
       })
     );
   };
-
-  const renderedFields = fields.map((field) => (
-    <Card
-      key={field.id}
-      size="default"
-      title={field.value || "Новое поле"}
-      className={styles.card}
-    >
-      <Form.Item label="Название поля" className={styles.formItem}>
-        <Input
-          placeholder="Название поля"
-          value={field.value}
-          className={styles.input}
-          onChange={(e) =>
-            dispatch(updateValue({ id: field.id, value: e.target.value }))
-          }
-        />
-      </Form.Item>
-
-      <Button
-        danger
-        onClick={() => dispatch(deleteField(field.id))}
-        className={styles.deleteButton}
-      >
-        Удалить
-      </Button>
-
-      <Form.Item>
-        <Checkbox
-          checked={field.required}
-          onChange={() => dispatch(toggleRequired(field.id))}
-          className={styles.checkbox}
-        >
-          Сделать поле обязательным
-        </Checkbox>
-      </Form.Item>
-    </Card>
-  ));
 
   return (
     <div className={styles.container}>
@@ -70,7 +29,9 @@ export const FormEditor = () => {
             Добавить поле
           </Button>
 
-          {renderedFields}
+          {fields.map((field) => (
+            <FieldCard key={field.id} field={field} />
+          ))}
         </Space>
       </Form>
     </div>

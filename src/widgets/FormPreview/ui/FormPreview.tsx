@@ -1,11 +1,9 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
-import { clearFields } from "@/entities/field/model/fieldSlice";
 import { Input, Form, Button, Checkbox } from "antd";
 import styles from "./FormPreview.module.css";
 
 export const FormPreview = () => {
   const fields = useAppSelector((state) => state.field.fields);
-  const dispatch = useAppDispatch();
 
   const handleFinish = (values: Record<string, string>) => {
     const readableValues = fields.reduce((acc, field) => {
@@ -14,7 +12,6 @@ export const FormPreview = () => {
     }, {} as Record<string, string>);
 
     console.log("Форма отправлена:", readableValues);
-    dispatch(clearFields());
   };
 
   let formFields = fields.map((field) => (
