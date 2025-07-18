@@ -37,7 +37,7 @@ export const FormPreview = () => {
   return (
     <div className={styles.container}>
       <div className={styles.formWrapper}>
-        <h3 className={styles.title}>Форма регестрации участников</h3>
+        <h3 className={styles.title}>Форма регистрации участников</h3>
         {fields.length ? (
           <Form layout="vertical" onFinish={handleFinish}>
             {formFields}
