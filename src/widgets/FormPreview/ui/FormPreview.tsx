@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { useAppSelector } from "@/app/hooks";
 import { Input, Form, Button, Checkbox } from "antd";
 import styles from "./FormPreview.module.css";
 
@@ -44,18 +44,7 @@ export const FormPreview = () => {
             <Form.Item
               name="agreement"
               valuePropName="checked"
-              rules={[
-                {
-                  validator: (_, value) =>
-                    value
-                      ? Promise.resolve()
-                      : Promise.reject(
-                          new Error(
-                            "Вы должны принять политику конфиденциальности"
-                          )
-                        ),
-                },
-              ]}
+              rules={[{ required: true, message: "Подтвердите согласие" }]}
             >
               <Checkbox className={styles.checkbox}>
                 Нажимая кнопку «Отправить», я принимаю условия политики
@@ -73,7 +62,9 @@ export const FormPreview = () => {
             </Form.Item>
           </Form>
         ) : (
-          <div>Поля формы пока не добавлены</div>
+          <div className={styles.emptyMessage}>
+            Поля формы пока не добавлены
+          </div>
         )}
       </div>
     </div>

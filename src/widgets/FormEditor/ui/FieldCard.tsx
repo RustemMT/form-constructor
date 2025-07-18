@@ -17,7 +17,6 @@ export const FieldCard = ({ field }: FieldCardProps) => {
 
   return (
     <Card
-      key={field.id}
       size="default"
       title={field.value || "Новое поле"}
       className={styles.card}
