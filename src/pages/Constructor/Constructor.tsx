@@ -1,16 +1,10 @@
 import { FormEditor } from "@/widgets/FormEditor/ui/FormEditor";
 import { FormPreview } from "@/widgets/FormPreview/ui/FormPreview";
+import styles from "./Constructor.module.css";
 
 export const ConstructorPage = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        height: "100vh",
-        maxWidth: "1440px",
-        margin: "0 auto",
-      }}
-    >
+    <div className={styles.wrapper}>
       <FormEditor />
       <FormPreview />
     </div>

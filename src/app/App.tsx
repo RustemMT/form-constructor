@@ -3,7 +3,7 @@ import { ConstructorPage } from "@/pages/Constructor/Constructor";
 
 function App() {
   return (
-    <div className="App" style={{}}>
+    <div className="App">
       <ConstructorPage />
     </div>
   );
