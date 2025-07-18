@@ -27,16 +27,22 @@
   font-size: 20px;
   width: 100%;
   height: 50px;
-  border: dashed 1px rgb(72, 178, 89);
   color: rgb(72, 178, 89);
+
+  border: dashed 1px rgb(72, 178, 89);
 }
 
 .deleteButton {
-  color: rgb(72, 178, 89);
-  border: 0;
   position: absolute;
   top: 0;
   right: 0;
+
+  padding: 30px;
+
+  font-size: 20px;
+  color: rgb(72, 178, 89);
+
+  border: 0;
 }
 
 .fullWidth {

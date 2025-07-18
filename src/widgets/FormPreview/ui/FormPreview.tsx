@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { clearFields } from "@/entities/field/model/fieldSlice";
-import { Input, Form, Button } from "antd";
-import styles from "./FormPreview.module.css"; // 👈 импорт стилей
+import { Input, Form, Button, Checkbox } from "antd";
+import styles from "./FormPreview.module.css";
 
 export const FormPreview = () => {
   const fields = useAppSelector((state) => state.field.fields);
@@ -9,7 +9,7 @@ export const FormPreview = () => {
 
   const handleFinish = (values: Record<string, string>) => {
     const readableValues = fields.reduce((acc, field) => {
-      acc[field.label] = values[field.id];
+      acc[field.value] = values[field.id];
       return acc;
     }, {} as Record<string, string>);
 
@@ -21,7 +21,6 @@ export const FormPreview = () => {
     <Form.Item
       key={field.id}
       name={field.id}
-      label={field.label}
       rules={
         field.required
           ? [
@@ -32,8 +31,9 @@ export const FormPreview = () => {
             ]
           : []
       }
+      className={styles.formItem}
     >
-      <Input placeholder={field.value} />
+      <Input placeholder={field.value} className={styles.input} />
     </Form.Item>
   ));
 
@@ -44,6 +44,27 @@ export const FormPreview = () => {
         {fields.length ? (
           <Form layout="vertical" onFinish={handleFinish}>
             {formFields}
+            <Form.Item
+              name="agreement"
+              valuePropName="checked"
+              rules={[
+                {
+                  validator: (_, value) =>
+                    value
+                      ? Promise.resolve()
+                      : Promise.reject(
+                          new Error(
+                            "Вы должны принять политику конфиденциальности"
+                          )
+                        ),
+                },
+              ]}
+            >
+              <Checkbox className={styles.checkbox}>
+                Нажимая кнопку «Отправить», я принимаю условия политики
+                конфиденциальности
+              </Checkbox>
+            </Form.Item>
             <Form.Item>
               <Button
                 type="primary"
